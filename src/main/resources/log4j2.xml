@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<Appenders>
+		<Console name="LogToConsole">
+			<PatternLayout
+				pattern="%d{HH:MM:SS} [%t] % 5level-%m %n" />
+		</Console>
+
+		<File name="LogToFile" fileName="D:/logs/app.log">
+			<PatternLayout
+				pattern="%d{HH:MM:SS} [%t] % 5level-%m %n" />
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.javatechnology" level="debug">
+			<AppenderRef ref="LogToConsole" />
+			<AppenderRef ref="LogToFile" />
+		</Logger>
+
+	</Loggers>
+</configuration>
