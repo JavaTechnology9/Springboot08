@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>SignUp</h2>
+	<form th:action="@{/employeeProcess}" th:object="${employee}" method="post">
+
+		<table align="center">
+			<tr>
+				<td><label for="name"> Name</label> <input
+					id="name" th:field="*{name}" /></td>
+			</tr>
+
+			<tr>
+				<td><label for="designation"> Employee Designation</label> <input
+					id="designation" th:field="*{designation}" /></td>
+			</tr>
+			<tr>
+				<td><label for="salary"> Employee Salary</label> 
+				<input id="salary" th:field="*{salary}" /></td>
+			</tr>
+			<tr>
+				<td><label for="address"> Address</label> 
+				<input id="address" th:field="*{address}" /></td>
+			</tr>
+
+			<!-- <tr>
+				<td><label for="address"> Address</label> <input id="address"
+					th:field="*{address}" /></td>
+			</tr>
+
+			<tr>
+				<td><label for="username"> Username</label> <input
+					id="username" th:field="*{username}" /></td>
+			</tr>
+
+			<tr>
+				<td><label for="password"> Password</label> <input
+					id="password" th:field="*{password}" /></td>
+			</tr> -->
+
+					<tr>
+			<td>
+			<button type="submit"> SignUP</button>
+			<span> Already Registred? <a href="/" th:href="@{/login}"></a></span>
+			</td>
+			</tr>
+
+
+		</table>
+
+
+	</form>
+</body>
+</html>
