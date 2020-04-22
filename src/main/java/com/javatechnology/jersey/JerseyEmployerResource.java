@@ -1,8 +1,8 @@
 package com.javatechnology.jersey;
 
-import java.util.Optional;
-
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -12,9 +12,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.javatechnology.model.Employee;
-
+@Component
 @Path("/JerseyResource")
 public class JerseyEmployerResource {
 	@Autowired
@@ -40,6 +41,23 @@ public class JerseyEmployerResource {
 		findById.setDesignation(employee.getDesignation());
 		repository.save(findById);
 		return Response.ok(findById).build();
+	}
+	@GET
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getEMployee(@PathParam("id") long id) {
+		Employee findById = repository.findById(id).get();
+		return Response.ok(findById).build();
+		
+	}
+	
+	@DELETE
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteEMployee(@PathParam("id") long id) {
+		repository.deleteById(id);
+		return Response.ok().build();
+		
 	}
 
 }

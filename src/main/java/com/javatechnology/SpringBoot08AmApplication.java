@@ -1,32 +1,27 @@
 package com.javatechnology;
 
-import javax.persistence.EntityManagerFactory;
+import javax.jms.ConnectionFactory;
 
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.SessionFactory;
-import org.hibernate.internal.SessionFactoryImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
+import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
+import org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.orm.jpa.EntityManagerFactoryAccessor;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+import org.springframework.jms.config.JmsListenerContainerFactory;
 
 import com.javatechnology.exception.MyErrorViewResolver;
 
 @SpringBootApplication/*(exclude = { SecurityAutoConfiguration.class,SecurityFilterAutoConfiguration.class })*/
 //@EnableWebSecurity
 //@ComponentScan("java.technology")
+@EnableJms
 public class SpringBoot08AmApplication {
 
 	public static void main(String[] args) {
@@ -63,6 +58,12 @@ public class SpringBoot08AmApplication {
 		return factoryBean;
 		
 	}*/
-	
+	@Bean
+	public ActiveMQConnectionFactory getFactory () {
+		ActiveMQConnectionFactory factory =new ActiveMQConnectionFactory();
+		factory.setTrustAllPackages(true);
+		return factory;
+		
+	}
 	
 }

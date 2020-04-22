@@ -1,5 +1,6 @@
 package com.javatechnology.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="users")
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="user_id")
