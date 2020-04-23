@@ -26,8 +26,8 @@ public class HomeController {
 	@Autowired
 	private JmsTemplate template;
 	@Autowired
-	private EmailService service;
-	
+	private EmailService emailService;
+	String attachment="C:\\Users\\yadav\\Documents\\Java\\SCJP.pdf";
 	//private BCryptPasswordEncoder encoder;
 	//Logger logger=LogManager.getLogger(SpringBoot08AmApplication.class);
 	
@@ -50,18 +50,16 @@ public class HomeController {
 		Set<Role> role=new HashSet<>();
 		role.add(new Role("USER"));
 		//user.setPassword(encoder.encode(user.getPassword()));
+		//emailService.sendEmail(user.getEmail(), "welcome to spring boot", "Testing.......");
+		emailService.sendEMailWithAttachment(user.getEmail(), "welcome to spring boot", user.getFirstname()+"Thanks for connecting Spring boot application",attachment);
+		template.convertAndSend("Springboot", "welcome to spring boot");
 		user.setRole(role);
-		service.sendEmail(user.getEmail(), "Welcome to Sprringboot", "Hello");
-		template.convertAndSend("UserInfo", user);
 		userRepository.save(user);
 		return "home";
 	}
-	@RequestMapping("/jms")
-	public void sendMessage() {
-		template.convertAndSend("Test", "message");
+	@JmsListener(destination = "Springboot")
+	public void reeivedMessage(String message) {
+		System.out.println("Received message from Queue "+message);
 	}
-	@JmsListener(destination = "UserInfo")
-	public void receiveMessage(User message) {
-		System.out.println("Received the message from JMS Queue"+message.getFirstname());
-	}
+	
 }
