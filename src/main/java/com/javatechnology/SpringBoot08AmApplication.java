@@ -26,6 +26,9 @@ public class SpringBoot08AmApplication {
 		 * for(String beanInfo:run.getBeanDefinitionNames()) {
 		 * System.out.println("Bean Information.........> " + beanInfo); }
 		 */
+		for(String beanInfo:run.getBeanDefinitionNames()) {
+			System.out.println("Bean Information.........> " + beanInfo);
+		}
 		/*
 		 * for(String str:args) { System.out.println("main method arguments---> " +str);
 		 * 
